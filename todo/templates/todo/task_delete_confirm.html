@@ -1,0 +1,65 @@
+{% extends 'todo/base.html' %}
+
+{% block title %}Delete Task | ToDo App{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-danger text-white py-3">
+            <h4 class="mb-0">Delete Task</h4>
+        </div>
+
+        <div class="card-body p-4 text-center">
+
+            <div class="mb-3">
+                <span class="display-4 text-danger">&#9888;</span>
+            </div>
+
+            <h5>Are you sure?</h5>
+
+            <p class="text-muted">
+                Do you really want to delete the following task?
+            </p>
+
+            <div class="alert alert-light border">
+                <h6 class="mb-1">{{ task.title }}</h6>
+
+                <p class="text-muted mb-0">
+                    {{ task.description|default:"No description provided." }}
+                </p>
+            </div>
+
+            <p class="text-danger small">
+                This action cannot be undone.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="d-flex justify-content-center gap-2">
+
+                    <button type="submit" class="btn btn-danger">
+                        Yes, Delete
+                    </button>
+
+                    <a href="{% url 'todo:task_list' %}"
+                       class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
